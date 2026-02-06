@@ -1,0 +1,21 @@
+{
+  "frontend/src/App.tsx": "Main application component managing section navigation (overview, menu, gallery, location, contact, admin) with profile setup dialog for first-time authenticated users.",
+  "frontend/src/components/layout/TopNav.tsx": "Sticky navigation header with logo, section links, mobile menu, and login button; shows admin link only to authenticated admins.",
+  "frontend/src/components/layout/Footer.tsx": "Simple footer with copyright notice and caffeine.ai attribution link.",
+  "frontend/src/components/sections/OverviewSection.tsx": "Home page displaying hero banner, restaurant description, and three feature cards highlighting authentic flavors, location, and ordering.",
+  "frontend/src/components/sections/MenuSection.tsx": "Menu display with search functionality, informational note about serving hours, organized by categories, showing item names, descriptions, and prices; uses seed data as fallback when backend is empty.",
+  "frontend/src/components/sections/GallerySection.tsx": "Responsive image grid with lightbox preview, using default generated images or backend-configured gallery metadata.",
+  "frontend/src/components/sections/LocationSection.tsx": "Location page showing restaurant address with map pin icon and \"Open in Google Maps\" button.",
+  "frontend/src/components/sections/ContactSection.tsx": "Contact page displaying owner name (Ch. Aamir Khurshid) and phone number with click-to-call functionality or placeholder message.",
+  "frontend/src/components/auth/LoginButton.tsx": "Internet Identity login/logout button with loading states and query cache clearing on logout.",
+  "frontend/src/components/auth/ProfileSetupDialog.tsx": "Modal dialog prompting first-time users to enter their name after authentication.",
+  "frontend/src/components/admin/AdminGate.tsx": "Authorization guard component that checks admin permissions and shows access denied message to non-admins.",
+  "frontend/src/components/admin/AdminPanel.tsx": "Admin dashboard with tabs for managing restaurant profile, menu, and gallery content.",
+  "frontend/src/components/admin/RestaurantProfileEditor.tsx": "Form for editing restaurant profile including name, description, owner, phone, address, and Google Maps link.",
+  "frontend/src/components/admin/MenuEditor.tsx": "Complete menu management interface with category and item CRUD operations, including dialogs for adding/editing.",
+  "frontend/src/components/admin/GalleryEditor.tsx": "Gallery metadata management interface for configuring image filenames and alt text.",
+  "frontend/src/hooks/useQueries.ts": "Centralized React Query hooks for all backend operations including user profiles, admin checks, restaurant data, menu, and gallery management.",
+  "frontend/src/index.css": "Global styles with warm earthy OKLCH color palette (terracotta, sand, saffron) for both light and dark modes, avoiding blue/purple tones.",
+  "frontend/tailwind.config.js": "Tailwind configuration with warm color tokens, custom font stack, and shadow utilities matching the Pakistani BBQ/tikka theme.",
+  "frontend/src/data/menuSeed.ts": "Seed menu data with 12 categories and 37 menu items extracted from the uploaded menu image, including English names, descriptions, and PKR prices."
+}

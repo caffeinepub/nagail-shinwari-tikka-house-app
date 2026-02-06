@@ -1,0 +1,44 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-extract-the-menu-content-from-the-uploaded-image-screenshot-20260207-020802-jpg-and-update-the-app-s-menu-data-so-the-public-menu-section-displays-the-extracted-categories-and-items-in-english-with-clear-well-written-names-and-short-descriptions-where-helpful-and-the-correct-prices-in-pakistani-rupees",
+      "featureTitle": "Extract the menu content from the uploaded image (Screenshot_20260207-020802.jpg) and update the app’s menu data so the public Menu section displays the extracted categories and items in English with clear, well-written names (and short descriptions where helpful) and the correct prices in Pakistani Rupees.",
+      "files": [
+        "frontend/src/components/sections/MenuSection.tsx",
+        "frontend/src/data/menuSeed.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-small-tasteful-informational-note-at-the-top-of-the-public-menu-section-above-search-for-any-general-menu-wide-information-present-in-the-uploaded-menu-image-e-g-serving-hours-written-in-english",
+      "featureTitle": "Add a small, tasteful informational note at the top of the public Menu section (above search) for any general menu-wide information present in the uploaded menu image (e.g., serving hours), written in English.",
+      "files": [
+        "frontend/src/components/sections/MenuSection.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

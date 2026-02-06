@@ -1,0 +1,44 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Update public Menu section with extracted menu content and informational note",
+  "requirements": [
+    {
+      "id": "REQ-10",
+      "summary": "Extract menu categories/items from the uploaded image and update the public Menu section data to show clear English names/descriptions and PKR prices while preserving search filtering.",
+      "acceptanceCriteria": [
+        "When opening the Menu section, the menu is not empty and shows multiple categories with items based on the uploaded image content.",
+        "All menu item names shown to users are in English and are written clearly (no raw Urdu text displayed in the Menu list).",
+        "Prices from the uploaded image are entered as numeric values and render as \"Rs. <amount>\" in the Menu UI.",
+        "Menu search continues to work, filtering by item name/description across all extracted items."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/data/menuSeed.ts",
+          "operation": "create",
+          "description": "Create a seed menu data module (categories + items) transcribed from Screenshot_20260207-020802.jpg in English, including short helpful descriptions where appropriate and numeric PKR prices that render as \"Rs. <amount>\" in the UI."
+        },
+        {
+          "path": "frontend/src/components/sections/MenuSection.tsx",
+          "operation": "modify",
+          "description": "Update MenuSection to use the extracted seed menu data as a fallback when backend-provided categories/items are empty, ensuring the existing search filters across the full (fallback or backend) item set and that item prices continue rendering as \"Rs. <amount>\"."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Add a short, tasteful English informational note above the search field in the public Menu section based on menu-wide info shown in the uploaded image (e.g., serving hours).",
+      "acceptanceCriteria": [
+        "The Menu section shows a short English note above the search field (only in the Menu section).",
+        "The note styling matches the existing theme (uses existing Tailwind/Shadcn styling) and does not disrupt the menu list layout on mobile."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/sections/MenuSection.tsx",
+          "operation": "modify",
+          "description": "Add a compact informational note (e.g., serving hours from the uploaded menu image) above the search input, using existing Tailwind + shadcn/ui primitives (without editing any files under frontend/src/components/ui) and keeping the layout mobile-friendly."
+        }
+      ]
+    }
+  ]
+}

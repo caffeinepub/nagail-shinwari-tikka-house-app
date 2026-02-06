@@ -1,0 +1,59 @@
+{
+  "kind": "build_request",
+  "title": "Update Menu section using the uploaded menu image",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-10",
+      "text": "Extract the menu content from the uploaded image (Screenshot_20260207-020802.jpg) and update the app’s menu data so the public Menu section displays the extracted categories and items in English with clear, well-written names (and short descriptions where helpful) and the correct prices in Pakistani Rupees.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "recent-messages"
+        ],
+        "quotes": [
+          "This is the menu",
+          "Update this in the menu section by writi g beautifully In that section",
+          "I only said that update menu section"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When opening the Menu section, the menu is not empty and shows multiple categories with items based on the uploaded image content.",
+        "All menu item names shown to users are in English and are written clearly (no raw Urdu text displayed in the Menu list).",
+        "Prices from the uploaded image are entered as numeric values and render as \"Rs. <amount>\" in the Menu UI.",
+        "Menu search continues to work, filtering by item name/description across all extracted items."
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Add a small, tasteful informational note at the top of the public Menu section (above search) for any general menu-wide information present in the uploaded menu image (e.g., serving hours), written in English.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "recent-messages"
+        ],
+        "quotes": [
+          "Update this in the menu section by writi g beautifully In that section"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The Menu section shows a short English note above the search field (only in the Menu section).",
+        "The note styling matches the existing theme (uses existing Tailwind/Shadcn styling) and does not disrupt the menu list layout on mobile."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor in backend/main.mo (no additional backend services).",
+    "Do not edit files under frontend/src/components/ui or any other paths listed in SYSTEM_CONTEXT.frontend.immutablePaths.",
+    "Use English for any user-facing text."
+  ],
+  "nonGoals": [
+    "Replacing gallery photos from Google links or scraping/downloading images from Google.",
+    "Changing the overall site navigation, sections, or authentication flow.",
+    "Adding new third-party integrations or external databases."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}
