@@ -13,11 +13,6 @@ const DEFAULT_GALLERY = [
     id: 'default-2',
     filename: 'nagail-food-2.dim_1200x800.png',
     altText: 'Traditional karahi with tikka and fresh naan bread'
-  },
-  {
-    id: 'default-3',
-    filename: 'nagail-restaurant.dim_1200x800.png',
-    altText: 'Warm and inviting restaurant interior'
   }
 ];
 

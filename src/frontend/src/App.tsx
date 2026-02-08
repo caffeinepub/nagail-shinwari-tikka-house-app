@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useInternetIdentity } from './hooks/useInternetIdentity';
 import TopNav from './components/layout/TopNav';
 import Footer from './components/layout/Footer';
@@ -10,6 +10,7 @@ import ContactSection from './components/sections/ContactSection';
 import AdminPanel from './components/admin/AdminPanel';
 import ProfileSetupDialog from './components/auth/ProfileSetupDialog';
 import { useGetCallerUserProfile } from './hooks/useQueries';
+import { registerServiceWorker } from './pwa/registerServiceWorker';
 
 type Section = 'overview' | 'menu' | 'gallery' | 'location' | 'contact' | 'admin';
 
@@ -21,6 +22,11 @@ export default function App() {
   const { data: userProfile, isLoading: profileLoading, isFetched } = useGetCallerUserProfile();
 
   const showProfileSetup = isAuthenticated && !profileLoading && isFetched && userProfile === null;
+
+  // Register service worker for PWA functionality
+  useEffect(() => {
+    registerServiceWorker();
+  }, []);
 
   const renderSection = () => {
     switch (activeSection) {

@@ -8,8 +8,6 @@ export const seedCategories: MenuCategory[] = [
   { id: '5', name: 'FISH' },
   { id: '6', name: 'B.B.Q' },
   { id: '7', name: 'RICE' },
-  { id: '8', name: 'SOUPS' },
-  { id: '9', name: 'CHINESE' },
   { id: '10', name: 'BREADS' },
   { id: '11', name: 'VEGETABLES' },
   { id: '12', name: 'SWEETS' },
@@ -52,18 +50,6 @@ export const seedMenuItems: MenuItem[] = [
 
   // RICE
   { id: '23', categoryId: '7', name: 'Chicken Pulao', description: 'Rice cooked with chicken and spices', price: 250 },
-
-  // SOUPS
-  { id: '24', categoryId: '8', name: 'Hot & Sour Soup', description: 'Spicy Asian-style soup', price: 110 },
-  { id: '25', categoryId: '8', name: 'Chicken Corn Soup', description: 'Soup with chicken and corn kernels', price: 110 },
-  { id: '26', categoryId: '8', name: 'Egg Drop Soup', description: 'Egg ribbons in clear broth', price: 110 },
-  { id: '27', categoryId: '8', name: 'Regular Soup', description: 'Classic homemade vegetable soup', price: 110 },
-
-  // CHINESE
-  { id: '28', categoryId: '9', name: 'Chicken Chow Mein', description: 'Stir-fried noodles with chicken', price: 250 },
-  { id: '29', categoryId: '9', name: 'Egg Fried Rice', description: 'Stir-fried rice with egg', price: 200 },
-  { id: '30', categoryId: '9', name: 'Chicken Fried Rice', description: 'Stir-fried rice with chicken', price: 250 },
-  { id: '31', categoryId: '9', name: 'Vegetable Chow Mein', description: 'Stir-fried noodles with vegetables', price: 200 },
 
   // BREADS
   { id: '32', categoryId: '10', name: 'Plain Naan', description: 'Traditional Pakistani flatbread', price: 20 },

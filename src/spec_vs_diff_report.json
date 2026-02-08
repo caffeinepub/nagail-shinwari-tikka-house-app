@@ -1,52 +1,33 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-06T21:19:03.144Z",
-  "summary": "The diff adds seeded menu categories/items (English names, descriptions, numeric PKR prices) and updates the Menu section to show an informational note above search plus a seed-data fallback when backend returns empty. However, the diff summary does not provide evidence that prices render in the exact required \"Rs. <amount>\" format, and it’s unclear whether the serving-hours note content is actually sourced from the uploaded menu image.",
-  "missing_requirements": [
-    {
-      "id": "REQ-10",
-      "requirement": "Prices from the uploaded image are entered as numeric values and render as \"Rs. <amount>\" in the Menu UI.",
-      "reason": "While numeric prices are present in the seed data (e.g., 50, 150, 600), the provided MenuSection.tsx snippet is truncated before the item price rendering, so there is no direct evidence the UI formats prices as \"Rs. <amount>\".",
-      "evidence": [
-        "frontend/src/data/menuSeed.ts",
-        "frontend/src/components/sections/MenuSection.tsx (truncated before item rendering)"
-      ]
-    },
-    {
-      "id": "REQ-11",
-      "requirement": "Add an informational note for any general menu-wide information present in the uploaded menu image, written in English.",
-      "reason": "A \"Serving Hours\" note was added, but the diff summary does not include evidence that these hours/text were actually present in the uploaded image (i.e., it may be invented rather than extracted).",
-      "evidence": [
-        "frontend/src/components/sections/MenuSection.tsx"
-      ]
-    }
-  ],
+  "generatedAt": "2026-02-08T14:05:21.083Z",
+  "summary": "REQ-1 and REQ-2 appear implemented: frontend Location section displays the exact fallback address string when profile/address is missing and formats structured address as \"{street}, {city}, {region}, {country}\"; backend defaultAddress fields are updated to street=\"Jandi Mor, GT road\", city=\"Gujar Khan\", region=\"Punjab\", country=\"Pakistan\". However, the diff introduces an additional backend module (migration.mo) and wires a migration hook into backend/main.mo, which was not requested and conflicts with the constraint to keep the backend as a single Motoko actor in backend/main.mo with no additional backend services/modules.",
+  "missing_requirements": [],
   "hallucinated_features": [
     {
-      "description": "Seed menu data fallback logic when backend menu is empty (client-side seedCategories/seedMenuItems used automatically).",
-      "reason": "REQ-10 asks to update the app’s menu data so the public Menu section displays extracted content; it does not request adding a frontend fallback mechanism that bypasses backend data when empty.",
+      "description": "Added a backend migration module and wired a migration hook into the main actor (upgrade migration support).",
+      "reason": "BuildRequest constraints specify the backend must remain a single Motoko actor in backend/main.mo (no additional backend services). Adding backend/migration.mo and importing/using it is extra functionality not requested by REQ-1/REQ-2 and appears to violate the constraint.",
       "evidence": [
-        "frontend/src/components/sections/MenuSection.tsx",
-        "frontend/src/data/menuSeed.ts"
+        "backend/migration.mo",
+        "backend/main.mo (import Migration \"migration\"; and '(with migration = Migration.run)')"
       ]
     },
     {
-      "description": "Added a backend migration module to populate/replace menu categories/items.",
-      "reason": "The BuildRequest does not mention implementing a migration system/module; it only asks to update menu data and add a note in the Menu section.",
+      "description": "Updated/introduced project tracking metadata file (project_state.json) and frontend file summaries document.",
+      "reason": "Not requested by the BuildRequest requirements (only address/location updates were requested).",
       "evidence": [
-        "backend/migration.mo",
-        "backend/main.mo (imports Migration and uses \"with migration = Migration.run\")"
+        "project_state.json",
+        "frontend-file-summaries.txt"
       ]
     }
   ],
-  "confidence": 0.62,
+  "confidence": 0.74,
   "changed_files": [
     "backend/main.mo",
     "backend/migration.mo",
     "frontend-file-summaries.txt",
-    "frontend/src/components/sections/MenuSection.tsx",
-    "frontend/src/data/menuSeed.ts",
+    "frontend/src/components/sections/LocationSection.tsx",
     "project_state.json"
   ]
 }

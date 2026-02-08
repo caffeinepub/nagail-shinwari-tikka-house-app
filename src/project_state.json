@@ -1,93 +1,16 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 5,
-  "summary": "Create a mobile app for Nagail Shinwari Tikka House (restaurant in Gujar Khan near Rawalpindi, Pakistan) including location, menu, photos, and contact/owner details sourced from Google listings.",
-  "architectural_notes": [
-    "App content (menu, photos, phone number, location) to be sourced from the restaurant's Google listing.",
-    "Do not scrape/download images directly from Google; require user to upload image files or provide direct image URLs before replacing gallery assets."
-  ],
-  "known_issues": [
-    "Build/deployment failed when attempting to update the Menu section from the uploaded menu image (\"AI couldn't implement that request\"); needs retry with simplified instructions or improved extraction pipeline."
-  ],
-  "isFixRequest": true,
+  "projectStateVersion": 3,
+  "summary": "New project",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-create-a-public-restaurant-website-app-for-nagail-shinwari-tikka-house-with-english-ui-text-and-clear-sections-for-overview-menu-gallery-photos-location-and-contact-owner-details-owner-ch-aamir-khurshid",
-      "title": "Create a public restaurant website/app for “Nagail Shinwari Tikka House” with English UI text and clear sections for Overview, Menu, Gallery (photos), Location, and Contact/Owner details (Owner: Ch. Aamir Khurshid).",
+      "id": "feature-update-the-location-section-so-the-primary-address-text-shown-to-users-is-exactly-jandi-mor-gt-road-gujar-khan-punjab-pakistan-including-when-restaurant-profile-data-is-unavailable",
+      "title": "Update the Location section so the primary address text shown to users is exactly: \"Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan\" (including when restaurant profile data is unavailable).",
       "reqIds": [
         "REQ-1"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-an-admin-only-editing-flow-to-update-restaurant-content-menu-items-contact-info-address-google-maps-link-gallery-metadata-from-within-the-app-with-authentication-using-internet-identity",
-      "title": "Add an admin-only editing flow to update restaurant content (menu items, contact info, address, Google Maps link, gallery metadata) from within the app, with authentication using Internet Identity.",
-      "reqIds": [
-        "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-build-the-menu-page-ui-show-categories-and-menu-items-with-name-description-optional-and-price-optional-support-searching-filtering-by-item-name",
-      "title": "Build the Menu page UI: show categories and menu items with name, description (optional), and price (optional). Support searching/filtering by item name.",
-      "reqIds": [
-        "REQ-4"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-build-the-gallery-page-ui-display-a-responsive-grid-of-restaurant-food-images-served-from-static-assets-using-backend-provided-metadata-for-alt-text-and-ordering",
-      "title": "Build the Gallery page UI: display a responsive grid of restaurant/food images served from static assets, using backend-provided metadata for alt text and ordering.",
-      "reqIds": [
-        "REQ-5"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-build-the-location-page-ui-show-the-address-text-gujar-khan-near-rawalpindi-pakistan-and-a-prominent-button-linking-out-to-the-google-maps-url-in-a-new-tab-window",
-      "title": "Build the Location page UI: show the address text (Gujar Khan near Rawalpindi, Pakistan) and a prominent button linking out to the Google Maps URL in a new tab/window.",
-      "reqIds": [
-        "REQ-6"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-build-the-contact-page-ui-display-owner-name-ch-aamir-khurshid-and-phone-number-and-provide-a-click-to-call-link-tel-when-a-number-is-present",
-      "title": "Build the Contact page UI: display owner name (Ch. Aamir Khurshid) and phone number, and provide a click-to-call link (tel:) when a number is present.",
-      "reqIds": [
-        "REQ-7"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-apply-a-cohesive-visual-theme-appropriate-for-a-pakistani-bbq-tikka-restaurant-warm-earthy-palette-charcoal-sand-saffron-tones-bold-headings-tactile-card-layout-and-enforce-it-consistently-across-all-pages",
-      "title": "Apply a cohesive visual theme appropriate for a Pakistani BBQ/tikka restaurant (warm, earthy palette; charcoal/sand/saffron tones; bold headings; tactile card layout) and enforce it consistently across all pages.",
-      "reqIds": [
-        "REQ-8"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-generated-static-images-into-the-app-logo-hero-banner-a-small-set-of-food-restaurant-photos-and-wire-them-into-the-ui-as-default-gallery-branding-assets-stored-under-frontend-public-assets-generated",
-      "title": "Add generated static images into the app (logo + hero banner + a small set of food/restaurant photos) and wire them into the UI as default gallery/branding assets, stored under frontend/public/assets/generated.",
-      "reqIds": [
-        "REQ-9"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-extract-the-menu-content-from-the-uploaded-image-screenshot-20260207-020802-jpg-and-update-the-app-s-menu-data-so-the-public-menu-section-displays-the-extracted-categories-and-items-in-english-with-clear-well-written-names-and-short-descriptions-where-helpful-and-the-correct-prices-in-pakistani-rupees",
-      "title": "Extract the menu content from the uploaded image (Screenshot_20260207-020802.jpg) and update the app’s menu data so the public Menu section displays the extracted categories and items in English with clear, well-written names (and short descriptions where helpful) and the correct prices in Pakistani Rupees.",
-      "reqIds": [
-        "REQ-10"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-a-small-tasteful-informational-note-at-the-top-of-the-public-menu-section-above-search-for-any-general-menu-wide-information-present-in-the-uploaded-menu-image-e-g-serving-hours-written-in-english",
-      "title": "Add a small, tasteful informational note at the top of the public Menu section (above search) for any general menu-wide information present in the uploaded menu image (e.g., serving hours), written in English.",
-      "reqIds": [
-        "REQ-11"
       ],
       "version": 1
     }
@@ -95,33 +18,20 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Build restaurant app for Nagail Shinwari Tikka House with location, menu, photos, and contact/owner details",
+      "summary": "Update the location/address text to: \"Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan\"",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-3",
-      "summary": "Implement backend data models and query methods to serve restaurant profile data: restaurant name, short description, address text (Gujar Khan near Rawalpindi, Pakistan), Google Maps link (URL string), owner name, phone number (string), menu categories and items, and gallery image metadata (filename + alt text).",
+      "summary": "Update the backend default restaurant profile address fields so that the structured address renders as \"Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan\" without repeating \"Gujar Khan\" in the street field.",
       "reqIds": [
         "REQ-2"
       ],
       "status": "pending"
-    },
-    {
-      "id": "AR-4",
-      "summary": "Update the Menu section by extracting items from a user-provided menu image and rewriting/formatting the menu text beautifully in the app UI.",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-5",
-      "summary": "Replace existing Gallery photos with user-provided images (requires direct image uploads or direct image file URLs, not a Google share link).",
-      "reqIds": [],
-      "status": "pending"
     }
   ],
-  "gameProjectType": "none",
-  "projectName": "Nagail Shinwari Tikka House App",
+  "projectName": "Update displayed restaurant location to “Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan”",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

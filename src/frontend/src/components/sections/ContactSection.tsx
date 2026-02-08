@@ -15,8 +15,16 @@ export default function ContactSection() {
   }
 
   const ownerName = 'Ch. Aamir Khurshid';
-  const phoneNumber = profile?.phoneNumber;
-  const hasPhone = phoneNumber && phoneNumber.trim() !== '' && phoneNumber !== '+92 300 1234567';
+  const backendPhone = profile?.phoneNumber;
+  const FALLBACK_PHONE = '051-3515448';
+  
+  // Determine if backend phone is valid (not empty, not whitespace, not placeholder)
+  const hasValidBackendPhone = backendPhone && 
+    backendPhone.trim() !== '' && 
+    backendPhone !== '+92 300 1234567';
+  
+  // Use backend phone if valid, otherwise use fallback
+  const displayPhone = hasValidBackendPhone ? backendPhone : FALLBACK_PHONE;
 
   return (
     <div className="container px-4 py-12">
@@ -54,28 +62,15 @@ export default function ContactSection() {
               <CardTitle className="text-2xl">Phone</CardTitle>
             </CardHeader>
             <CardContent className="text-center space-y-4">
-              {hasPhone ? (
-                <>
-                  <p className="text-xl font-semibold">{phoneNumber}</p>
-                  <Button
-                    size="lg"
-                    onClick={() => window.location.href = `tel:${phoneNumber}`}
-                    className="gap-2"
-                  >
-                    <Phone className="h-5 w-5" />
-                    Call Now
-                  </Button>
-                </>
-              ) : (
-                <div className="py-4">
-                  <p className="text-muted-foreground">
-                    Phone number will be available soon. Please visit us in person or check back later.
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    (Admin: Please update the phone number in the admin panel)
-                  </p>
-                </div>
-              )}
+              <p className="text-xl font-semibold">{displayPhone}</p>
+              <Button
+                size="lg"
+                onClick={() => window.location.href = `tel:${displayPhone}`}
+                className="gap-2"
+              >
+                <Phone className="h-5 w-5" />
+                Call Now
+              </Button>
             </CardContent>
           </Card>
 

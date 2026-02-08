@@ -17,7 +17,7 @@ export default function LocationSection() {
   const address = profile?.address;
   const fullAddress = address
     ? `${address.street}, ${address.city}, ${address.region}, ${address.country}`
-    : 'Gujar Khan, Punjab, Pakistan';
+    : 'Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan';
 
   return (
     <div className="container px-4 py-12">
@@ -63,7 +63,7 @@ export default function LocationSection() {
             )}
 
             <div className="pt-4 border-t border-border text-center text-sm text-muted-foreground">
-              <p>Near main bazaar, Gujar Khan</p>
+              <p>Located on GT road at Jandi Mor</p>
               <p className="mt-1">Easily accessible from Rawalpindi</p>
             </div>
           </CardContent>

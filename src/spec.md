@@ -1,12 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Update the public Menu section to reflect the categories, items, and prices shown in the uploaded menu screenshot, presented cleanly in English.
+**Goal:** Update the restaurant location/address displayed to users to exactly “Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan” and ensure it is shown consistently even when profile data is unavailable.
 
 **Planned changes:**
-- Extract categories, menu items, and prices from `Screenshot_20260207-020802.jpg` and update the app’s menu data so the Menu section is populated (English names, optional short descriptions where helpful, prices in Pakistani Rupees).
-- Ensure prices are stored as numeric values and rendered in the UI as `Rs. <amount>`.
-- Add a small informational note at the top of the Menu section (above search) for any menu-wide information visible in the screenshot (e.g., serving hours), written in English and styled to match the existing theme.
-- Keep existing Menu search behavior working across the updated item names/descriptions.
+- Update the frontend Location section to display the primary address line as “Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan” when restaurant profile address data is missing/unavailable.
+- Update the backend default restaurant profile address fields (street/city/region/country) so the structured address renders as “Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan” without duplicating “Gujar Khan”.
+- Ensure the Location section does not show duplicated “Gujar Khan” across the main address line and any related helper text.
 
-**User-visible outcome:** Visitors can open the Menu section and browse multiple English-labeled categories and items with correct `Rs.` prices, see a short menu note above search, and use search to filter the updated menu.
+**User-visible outcome:** The Location page consistently shows the address “Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan” as the main displayed location, without repeated city text.
