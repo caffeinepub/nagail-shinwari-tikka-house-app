@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-location-section-so-the-primary-address-text-shown-to-users-is-exactly-jandi-mor-gt-road-gujar-khan-punjab-pakistan-including-when-restaurant-profile-data-is-unavailable",
-      "featureTitle": "Update the Location section so the primary address text shown to users is exactly: \"Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan\" (including when restaurant profile data is unavailable).",
+      "featureId": "feature-remove-the-breakfast-category-and-all-breakfast-items-from-the-seed-fallback-menu-data-so-breakfast-never-appears-when-the-backend-menu-is-empty",
+      "featureTitle": "Remove the Breakfast category and all Breakfast items from the seed (fallback) menu data so Breakfast never appears when the backend menu is empty.",
       "files": [
-        "frontend/src/components/sections/LocationSection.tsx"
+        "frontend/src/data/menuSeed.ts"
       ],
       "components": [
         "authorization@4.0.0",
@@ -17,6 +17,25 @@
       ],
       "testIds": [
         "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-the-public-menu-section-does-not-display-breakfast-even-if-a-breakfast-category-items-exist-in-backend-data-e-g-legacy-admin-created-filter-out-any-category-named-breakfast-case-insensitive-and-any-items-belonging-to-that-category-before-rendering",
+      "featureTitle": "Ensure the public Menu section does not display Breakfast even if a Breakfast category/items exist in backend data (e.g., legacy/admin-created). Filter out any category named \"BREAKFAST\" (case-insensitive) and any items belonging to that category before rendering.",
+      "files": [
+        "frontend/src/components/sections/MenuSection.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
       ],
       "confidence": "high"
     }

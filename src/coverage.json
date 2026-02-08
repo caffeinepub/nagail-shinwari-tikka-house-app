@@ -1,29 +1,40 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T14:05:21.085Z",
+  "generatedAt": "2026-02-08T14:11:22.062Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 1,
+    "total": 3,
+    "implemented": 2,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Update the Location section so the primary address text shown to users is exactly: \"Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan\" (including when restaurant profile data is unavailable).",
+        "summary": "Remove the Breakfast category and all Breakfast items from the seed (fallback) menu data so Breakfast never appears when the backend menu is empty.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/sections/LocationSection.tsx"
+          "frontend/src/data/menuSeed.ts"
         ],
         "matchedFiles": [
-          "frontend/src/components/sections/LocationSection.tsx"
+          "frontend/src/data/menuSeed.ts"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Update the backend default restaurant profile address fields so that the structured address renders as \"Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan\" without repeating \"Gujar Khan\" in the street field.",
+        "summary": "Ensure the public Menu section does not display Breakfast even if a Breakfast category/items exist in backend data (e.g., legacy/admin-created). Filter out any category named \"BREAKFAST\" (case-insensitive) and any items belonging to that category before rendering.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/sections/MenuSection.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/sections/MenuSection.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "When an admin deletes a menu category, also delete all menu items that belong to that category in the backend so removing Breakfast fully removes its items as well.",
         "status": "unknown",
         "plannedFiles": [],
         "matchedFiles": []
@@ -37,7 +48,8 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/sections/LocationSection.tsx",
+    "frontend/src/components/sections/MenuSection.tsx",
+    "frontend/src/data/menuSeed.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

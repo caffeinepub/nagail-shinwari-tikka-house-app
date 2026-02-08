@@ -1,52 +1,71 @@
 {
   "kind": "build_request",
-  "title": "Update displayed restaurant location to “Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan”",
+  "title": "Remove Breakfast from the Menu",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Update the Location section so the primary address text shown to users is exactly: \"Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan\" (including when restaurant profile data is unavailable).",
+      "text": "Remove the Breakfast category and all Breakfast items from the seed (fallback) menu data so Breakfast never appears when the backend menu is empty.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-6"
         ],
         "quotes": [
-          "totally change the location and write Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan"
+          "remove the breakfast from the menu"
         ]
       },
       "acceptanceCriteria": [
-        "When the restaurant profile query has no address data, the Location page displays exactly \"Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan\" as the main address line.",
-        "When the restaurant profile has address data, the Location page’s main address line renders as \"{street}, {city}, {region}, {country}\" and matches \"Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan\" given the updated default profile values.",
-        "The Location section does not show a duplicated \"Gujar Khan\" across its address-related lines (main address + helper text)."
+        "`frontend/src/data/menuSeed.ts` no longer contains a category named \"BREAKFAST\".",
+        "`frontend/src/data/menuSeed.ts` no longer contains any items that were under the Breakfast category (e.g., Paratha, Halwa Puri).",
+        "When the backend returns no menu data (categories/items arrays are empty), the Menu section renders without any Breakfast category or items."
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Update the backend default restaurant profile address fields so that the structured address renders as \"Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan\" without repeating \"Gujar Khan\" in the street field.",
-      "target": "backend",
+      "text": "Ensure the public Menu section does not display Breakfast even if a Breakfast category/items exist in backend data (e.g., legacy/admin-created). Filter out any category named \"BREAKFAST\" (case-insensitive) and any items belonging to that category before rendering.",
+      "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-6"
         ],
         "quotes": [
-          "totally change the location and write Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan"
+          "remove the breakfast from the menu"
         ]
       },
       "acceptanceCriteria": [
-        "In backend/main.mo, the defaultAddress values are updated to: street=\"Jandi Mor, GT road\", city=\"Gujar Khan\", region=\"Punjab\", country=\"Pakistan\" (postalCode can remain unchanged).",
-        "Calling getRestaurantProfile() on a fresh deployment returns an address that the frontend renders as \"Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan\"."
+        "If the backend returns a category with name \"BREAKFAST\" (any casing), it is not rendered in the Menu section.",
+        "Items belonging to the filtered Breakfast category are not shown in search results or under any category cards.",
+        "No empty category cards appear as a result of filtering."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "When an admin deletes a menu category, also delete all menu items that belong to that category in the backend so removing Breakfast fully removes its items as well.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "remove the breakfast from the menu"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Calling `deleteMenuCategory(categoryId)` removes the category and all menu items whose `categoryId` matches the deleted category.",
+        "After deleting a category, subsequent calls to `getMenuItemsByCategory(deletedCategoryId)` return an empty array.",
+        "Frontend admin warning text (“All items in it will also be deleted.”) matches actual backend behavior."
       ]
     }
   ],
   "constraints": [
-    "Backend must remain a single Motoko actor in backend/main.mo (no additional backend services).",
-    "Do not modify any files under frontend/src/components/ui or any other frontend immutablePaths.",
-    "Use English for all user-facing text."
+    "Backend must remain a single Motoko actor in `backend/main.mo`.",
+    "Do not modify files under `frontend/src/components/ui` or other immutable paths listed in SYSTEM_CONTEXT.",
+    "Use English for any user-facing text."
   ],
   "nonGoals": [
-    "Do not add new authentication methods or third-party integrations.",
-    "Do not redesign unrelated sections (menu, gallery, contact) beyond what is necessary to keep the location/address consistent."
+    "Adding new menu categories or items beyond removing Breakfast.",
+    "Changing the restaurant profile, location, gallery, or authentication behavior."
   ],
   "imageRequirements": {
     "required": [],

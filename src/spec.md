@@ -1,11 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Update the restaurant location/address displayed to users to exactly “Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan” and ensure it is shown consistently even when profile data is unavailable.
+**Goal:** Remove Breakfast from the menu everywhere (seed/fallback data, public menu rendering, and backend deletion behavior).
 
 **Planned changes:**
-- Update the frontend Location section to display the primary address line as “Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan” when restaurant profile address data is missing/unavailable.
-- Update the backend default restaurant profile address fields (street/city/region/country) so the structured address renders as “Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan” without duplicating “Gujar Khan”.
-- Ensure the Location section does not show duplicated “Gujar Khan” across the main address line and any related helper text.
+- Remove the “BREAKFAST” category and its items from `frontend/src/data/menuSeed.ts` so it never appears when backend menu data is empty.
+- Filter out any “BREAKFAST” category (case-insensitive) and its items from the public Menu UI even if returned by the backend, avoiding empty category cards and excluding these items from search/results.
+- Update backend category deletion so deleting a menu category also deletes all menu items belonging to that category (matching `categoryId`).
 
-**User-visible outcome:** The Location page consistently shows the address “Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan” as the main displayed location, without repeated city text.
+**User-visible outcome:** The public Menu never shows a Breakfast category or Breakfast items, and when an admin deletes a category, all items in that category are removed as well.

@@ -1,33 +1,42 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T14:05:21.083Z",
-  "summary": "REQ-1 and REQ-2 appear implemented: frontend Location section displays the exact fallback address string when profile/address is missing and formats structured address as \"{street}, {city}, {region}, {country}\"; backend defaultAddress fields are updated to street=\"Jandi Mor, GT road\", city=\"Gujar Khan\", region=\"Punjab\", country=\"Pakistan\". However, the diff introduces an additional backend module (migration.mo) and wires a migration hook into backend/main.mo, which was not requested and conflicts with the constraint to keep the backend as a single Motoko actor in backend/main.mo with no additional backend services/modules.",
-  "missing_requirements": [],
-  "hallucinated_features": [
+  "generatedAt": "2026-02-08T14:11:22.059Z",
+  "summary": "REQ-1 and REQ-2 appear implemented in the frontend (seed data updated to remove BREAKFAST; MenuSection filters out BREAKFAST categories/items from backend data and avoids empty category cards). REQ-3 (backend cascade-delete of menu items when deleting a category) is not evidenced in the provided backend diff (deleteMenuCategory implementation not shown). Diff also includes unrequested additions/changes such as a backend migration module and new MenuSection UI copy (Serving Hours note).",
+  "missing_requirements": [
     {
-      "description": "Added a backend migration module and wired a migration hook into the main actor (upgrade migration support).",
-      "reason": "BuildRequest constraints specify the backend must remain a single Motoko actor in backend/main.mo (no additional backend services). Adding backend/migration.mo and importing/using it is extra functionality not requested by REQ-1/REQ-2 and appears to violate the constraint.",
+      "id": "REQ-3",
+      "requirement": "When an admin deletes a menu category, also delete all menu items that belong to that category in the backend so removing Breakfast fully removes its items as well.",
+      "reason": "The diff snippet for backend/main.mo is truncated and does not show any implementation or modification of deleteMenuCategory(categoryId) to cascade-delete menu items. No other file in the diff summary evidences this behavior change.",
       "evidence": [
-        "backend/migration.mo",
-        "backend/main.mo (import Migration \"migration\"; and '(with migration = Migration.run)')"
-      ]
-    },
-    {
-      "description": "Updated/introduced project tracking metadata file (project_state.json) and frontend file summaries document.",
-      "reason": "Not requested by the BuildRequest requirements (only address/location updates were requested).",
-      "evidence": [
-        "project_state.json",
-        "frontend-file-summaries.txt"
+        "backend/main.mo (truncated)"
       ]
     }
   ],
-  "confidence": 0.74,
+  "hallucinated_features": [
+    {
+      "description": "Introduced a backend migration module and applied it on upgrade.",
+      "reason": "The BuildRequest did not request any migration system or upgrade-time migration hook; it only specified backend behavior for deleting categories/items and frontend filtering/seed updates.",
+      "evidence": [
+        "backend/migration.mo",
+        "backend/main.mo (imports Migration \"migration\" and '(with migration = Migration.run) actor')"
+      ]
+    },
+    {
+      "description": "Added a new public-facing 'Serving Hours' informational note in the Menu section UI.",
+      "reason": "The BuildRequest only requested removing/filtering Breakfast; it did not request adding new menu-related informational content.",
+      "evidence": [
+        "frontend/src/components/sections/MenuSection.tsx (adds Informational Note / Serving Hours block)"
+      ]
+    }
+  ],
+  "confidence": 0.68,
   "changed_files": [
     "backend/main.mo",
     "backend/migration.mo",
     "frontend-file-summaries.txt",
-    "frontend/src/components/sections/LocationSection.tsx",
+    "frontend/src/components/sections/MenuSection.tsx",
+    "frontend/src/data/menuSeed.ts",
     "project_state.json"
   ]
 }

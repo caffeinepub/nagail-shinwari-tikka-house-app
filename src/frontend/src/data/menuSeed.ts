@@ -1,7 +1,6 @@
 import type { MenuCategory, MenuItem } from '../backend';
 
 export const seedCategories: MenuCategory[] = [
-  { id: '1', name: 'BREAKFAST' },
   { id: '2', name: 'DESI DISHES' },
   { id: '3', name: 'CHICKEN DISHES' },
   { id: '4', name: 'MUTTON DISHES' },
@@ -14,10 +13,6 @@ export const seedCategories: MenuCategory[] = [
 ];
 
 export const seedMenuItems: MenuItem[] = [
-  // BREAKFAST
-  { id: '1', categoryId: '1', name: 'Paratha', description: 'Traditional Pakistani flatbread fried in ghee', price: 50 },
-  { id: '2', categoryId: '1', name: 'Halwa Puri', description: 'Sweet semolina with fried bread and potatoes', price: 150 },
-
   // DESI DISHES
   { id: '3', categoryId: '2', name: 'Daal Mash', description: 'Lentil curry served with roti', price: 180 },
   { id: '4', categoryId: '2', name: 'Chana Masala', description: 'Spicy chickpea curry', price: 200 },

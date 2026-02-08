@@ -5,11 +5,10 @@ import Runtime "mo:core/Runtime";
 import Iter "mo:core/Iter";
 import Migration "migration";
 
-
 import MixinAuthorization "authorization/MixinAuthorization";
 import AccessControl "authorization/access-control";
 
-
+// Apply migration on upgrade.
 (with migration = Migration.run)
 actor {
   // Initialize the user system state
@@ -152,6 +151,16 @@ actor {
       Runtime.trap("Unauthorized: Only admin can delete a category");
     };
     menuCategories.remove(categoryId);
+
+    // Delete all menu items with the matching categoryId
+    let itemsToRemove = menuItems.toArray().filter(
+      func((_, item)) {
+        item.categoryId == categoryId;
+      }
+    );
+    for ((itemId, _) in itemsToRemove.values()) {
+      menuItems.remove(itemId);
+    };
   };
 
   public shared ({ caller }) func addMenuItem(item : MenuItem) : async () {

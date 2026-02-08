@@ -13,9 +13,28 @@ export default function MenuSection() {
 
   const isLoading = categoriesLoading || itemsLoading;
 
+  // Filter out BREAKFAST category from backend data (case-insensitive)
+  const filteredBackendCategories = useMemo(() => {
+    return backendCategories.filter(cat => cat.name.toUpperCase() !== 'BREAKFAST');
+  }, [backendCategories]);
+
+  // Get excluded category IDs (BREAKFAST)
+  const excludedCategoryIds = useMemo(() => {
+    return new Set(
+      backendCategories
+        .filter(cat => cat.name.toUpperCase() === 'BREAKFAST')
+        .map(cat => cat.id)
+    );
+  }, [backendCategories]);
+
+  // Filter out items belonging to BREAKFAST category
+  const filteredBackendItems = useMemo(() => {
+    return backendItems.filter(item => !excludedCategoryIds.has(item.categoryId));
+  }, [backendItems, excludedCategoryIds]);
+
   // Use seed data as fallback when backend is empty
-  const categories = backendCategories.length > 0 ? backendCategories : seedCategories;
-  const allItems = backendItems.length > 0 ? backendItems : seedMenuItems;
+  const categories = filteredBackendCategories.length > 0 ? filteredBackendCategories : seedCategories;
+  const allItems = filteredBackendItems.length > 0 ? filteredBackendItems : seedMenuItems;
 
   const filteredItems = useMemo(() => {
     if (!searchQuery.trim()) return allItems;

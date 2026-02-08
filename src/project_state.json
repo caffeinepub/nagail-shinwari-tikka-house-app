@@ -1,16 +1,24 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "New project",
+  "summary": "Menu management project: update the menu by removing the breakfast offering.",
   "architectural_notes": [],
   "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-update-the-location-section-so-the-primary-address-text-shown-to-users-is-exactly-jandi-mor-gt-road-gujar-khan-punjab-pakistan-including-when-restaurant-profile-data-is-unavailable",
-      "title": "Update the Location section so the primary address text shown to users is exactly: \"Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan\" (including when restaurant profile data is unavailable).",
+      "id": "feature-remove-the-breakfast-category-and-all-breakfast-items-from-the-seed-fallback-menu-data-so-breakfast-never-appears-when-the-backend-menu-is-empty",
+      "title": "Remove the Breakfast category and all Breakfast items from the seed (fallback) menu data so Breakfast never appears when the backend menu is empty.",
       "reqIds": [
         "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-public-menu-section-does-not-display-breakfast-even-if-a-breakfast-category-items-exist-in-backend-data-e-g-legacy-admin-created-filter-out-any-category-named-breakfast-case-insensitive-and-any-items-belonging-to-that-category-before-rendering",
+      "title": "Ensure the public Menu section does not display Breakfast even if a Breakfast category/items exist in backend data (e.g., legacy/admin-created). Filter out any category named \"BREAKFAST\" (case-insensitive) and any items belonging to that category before rendering.",
+      "reqIds": [
+        "REQ-2"
       ],
       "version": 1
     }
@@ -18,20 +26,20 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Update the location/address text to: \"Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan\"",
+      "summary": "Remove breakfast from the menu",
       "reqIds": [],
       "status": "pending"
     },
     {
-      "id": "AR-3",
-      "summary": "Update the backend default restaurant profile address fields so that the structured address renders as \"Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan\" without repeating \"Gujar Khan\" in the street field.",
+      "id": "AR-4",
+      "summary": "When an admin deletes a menu category, also delete all menu items that belong to that category in the backend so removing Breakfast fully removes its items as well.",
       "reqIds": [
-        "REQ-2"
+        "REQ-3"
       ],
       "status": "pending"
     }
   ],
-  "projectName": "Update displayed restaurant location to “Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan”",
+  "projectName": "Remove Breakfast from the Menu",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

@@ -1,21 +1,37 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Update Location section primary address text",
+  "title": "Remove Breakfast from public Menu (seed + backend filtering)",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Ensure the Location section displays the exact primary address \"Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan\" as a fallback and renders the structured address without duplicating \"Gujar Khan\".",
+      "summary": "Remove the Breakfast category and its items from the seed (fallback) menu so it never appears when backend menu data is empty.",
       "acceptanceCriteria": [
-        "When the restaurant profile query has no address data, the Location page displays exactly \"Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan\" as the main address line.",
-        "When the restaurant profile has address data, the Location page’s main address line renders as \"{street}, {city}, {region}, {country}\" and matches \"Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan\" given the updated default profile values.",
-        "The Location section does not show a duplicated \"Gujar Khan\" across its address-related lines (main address + helper text)."
+        "`frontend/src/data/menuSeed.ts` no longer contains a category named \"BREAKFAST\".",
+        "`frontend/src/data/menuSeed.ts` no longer contains any items that were under the Breakfast category (e.g., Paratha, Halwa Puri).",
+        "When the backend returns no menu data (categories/items arrays are empty), the Menu section renders without any Breakfast category or items."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/sections/LocationSection.tsx",
+          "path": "frontend/src/data/menuSeed.ts",
           "operation": "modify",
-          "description": "Update the Location section to use the exact fallback primary address string \"Jandi Mor, GT road, Gujar Khan, Punjab, Pakistan\" when profile/address data is unavailable or incomplete, and build the structured address defensively (e.g., avoid repeating the city if it already appears in the street) so \"Gujar Khan\" is not duplicated between address parts or helper text."
+          "description": "Delete the seed category named \"BREAKFAST\" and remove all seed items that belonged to that category (including items like Paratha and Halwa Puri) so seed fallback data cannot render Breakfast."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Filter out any Breakfast category/items from backend-provided menu data before search and rendering in the public Menu section.",
+      "acceptanceCriteria": [
+        "If the backend returns a category with name \"BREAKFAST\" (any casing), it is not rendered in the Menu section.",
+        "Items belonging to the filtered Breakfast category are not shown in search results or under any category cards.",
+        "No empty category cards appear as a result of filtering."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/sections/MenuSection.tsx",
+          "operation": "modify",
+          "description": "Add a case-insensitive \"BREAKFAST\" exclusion step for public menu rendering: compute the set of excluded category IDs by filtering categories whose name matches \"BREAKFAST\" (any casing), then filter categories and items to remove that category and any items whose categoryId is excluded before applying search and building categoriesWithItems; ensure the existing empty-category removal still prevents blank cards."
         }
       ]
     }
